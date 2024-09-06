@@ -1,16 +1,10 @@
 # pizza_slice_app
 
-A new Flutter project.
+A UI/UX designed app using Flutter.
 
-## Getting Started
+You can view prototype of app through:
+https://www.figma.com/proto/UboFTrYIwWLywWxqFPi0rG/PIZZA-SLICE?node-id=69-270&node-type=CANVAS&m=dev&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&t=wihrZuaqCfmiF9id-1
 
-This project is a starting point for a Flutter application.
+![Screenshot_1725636676](https://github.com/user-attachments/assets/d88978a5-e1b4-4a04-a12d-ceeb4eccbb8e)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot_1725636682](https://github.com/user-attachments/assets/44de5727-32b2-4d2f-a1af-dbf155159e5d)
