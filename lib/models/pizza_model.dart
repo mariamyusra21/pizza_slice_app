@@ -3,17 +3,19 @@ class Pizza {
   String image;
   String? desc;
   double? rating;
-  int? spiciness;
+  double? spiciness;
   int? portion;
   String? size;
   String? crust;
   String? flavour;
   bool fav;
+  int? price;
 
   Pizza(
       {required this.name,
       required this.image,
       required this.desc,
+      required this.price,
       required this.flavour,
       required this.rating,
       required this.fav});
@@ -26,6 +28,7 @@ List<Pizza> pizzaList = [
       desc: 'Sicilian pizza California-style with Margherita Tomato',
       flavour: 'Margherita Tomato',
       rating: 4.7,
+      price: 699,
       fav: true),
   Pizza(
       name: 'Hawaiian Tandoori Chicken Pizza',
@@ -33,6 +36,7 @@ List<Pizza> pizzaList = [
       desc: 'Hawaiian  Tandoori flavored with chicken',
       flavour: 'Tandoori Chicken',
       rating: 4.8,
+      price: 999,
       fav: true),
   Pizza(
       name: 'Chicago-style Pepperoni Pizza',
@@ -40,6 +44,7 @@ List<Pizza> pizzaList = [
       desc: 'Chicago-style pizza Pepperoni roll Lahmajoun.',
       flavour: 'Pepperoni',
       rating: 4.6,
+      price: 1499,
       fav: false),
   Pizza(
       name: 'Hot Barbecue chicken pizza ',
@@ -47,5 +52,6 @@ List<Pizza> pizzaList = [
       desc: 'Hot Barbecue chicken wings with capsicum and tomato.',
       flavour: 'Barbecue chicken',
       rating: 4.5,
+      price: 1199,
       fav: false),
 ];

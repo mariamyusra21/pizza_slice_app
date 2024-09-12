@@ -29,7 +29,7 @@ class HomeScreenTabViewState extends State<HomeScreenTabView>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0XFFFBF4F4),
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: _buildAppBar(context),
       body: SingleChildScrollView(
         child: Column(
