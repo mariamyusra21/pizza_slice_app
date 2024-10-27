@@ -6,7 +6,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../widgets/home_screen_items.dart';
 
 class HomeScreenTabView extends StatefulWidget {
-  const HomeScreenTabView({Key? key});
+  const HomeScreenTabView({super.key});
   @override
   HomeScreenTabViewState createState() => HomeScreenTabViewState();
 }
@@ -261,8 +261,8 @@ class HomeScreenTabViewState extends State<HomeScreenTabView>
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          shadows: [
-            const BoxShadow(
+          shadows: const [
+            BoxShadow(
               color: Color(0x3F000000),
               blurRadius: 18,
               offset: Offset(0, 10),
@@ -270,24 +270,24 @@ class HomeScreenTabViewState extends State<HomeScreenTabView>
             )
           ],
         ),
-        tabs: [
-          const Tab(
+        tabs: const [
+          Tab(
             text: "Popular",
             iconMargin: EdgeInsets.all(5),
           ),
-          const Tab(
+          Tab(
             text: "Daily Deals",
             iconMargin: EdgeInsets.all(5),
           ),
-          const Tab(
+          Tab(
             text: "Family Deals",
             iconMargin: EdgeInsets.all(5),
           ),
-          const Tab(
+          Tab(
             text: "MELTZ",
             iconMargin: EdgeInsets.all(5),
           ),
-          const Tab(
+          Tab(
             text: "Cricket Deals",
             iconMargin: EdgeInsets.all(5),
           ),
@@ -316,141 +316,30 @@ class HomeScreenTabViewState extends State<HomeScreenTabView>
 
   /// Section Widget
   Widget _buildBottomBar(BuildContext context) {
-    return SizedBox(
-      height: 60,
-      width: double.maxFinite,
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Color(0XFFE2D6D6),
-        ),
-        child: BottomNavigationBar(
-          onTap: (value) {},
-          selectedIconTheme: const IconThemeData(color: Color(0XFFFF6E7E)),
-          // selectedItemColor: const Color(0XFFFF6E7E),
-          unselectedItemColor: const Color(0XFF49454F),
-          selectedLabelStyle: const TextStyle(
-            color: Color(0XFF49454F),
-            fontSize: 12,
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.w500,
+    return NavigationBar(height: 80, elevation: 0, destinations: [
+      NavigationDestination(
+          icon: SvgPicture.asset(
+            "assets/images/img_nav_home.svg",
           ),
-          backgroundColor: Colors.transparent,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          elevation: 0,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 64,
-                    decoration: BoxDecoration(
-                      color: const Color(0XFFFF6E7E),
-                      borderRadius: BorderRadius.circular(
-                        16,
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 5, 19, 3),
-                          child: SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: SvgPicture.asset(
-                              "assets/images/img_nav_home.svg",
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              // icon: SvgPicture.asset(
-              //   "assets/images/img_nav_home.svg",
-              // ),
-              label: 'HOME',
-            ),
-            BottomNavigationBarItem(
-              // icon: Column(
-              //   mainAxisSize: MainAxisSize.min,
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     SizedBox(
-              //       height: 24,
-              //       width: 24,
-              //       child: SvgPicture.asset(
-              //         "assets/images/img_nav_favourite.svg",
-              //       ),
-              //     ),
-              //     const Padding(
-              //       padding: EdgeInsets.only(top: 9),
-              //       child: Text(
-              //         "Favourite",
-              //         style: TextStyle(
-              //           color: Color(0XFF49454F),
-              //           fontSize: 12,
-              //           fontFamily: 'Roboto',
-              //           fontWeight: FontWeight.w500,
-              //         ),
-              //       ),
-              //     )
-              //   ],
-              // ),
-              icon: SvgPicture.asset(
-                "assets/images/img_nav_favourite.svg",
-              ),
-              label: 'Favourite',
-            ),
-            BottomNavigationBarItem(
-              // icon: Column(
-              //   mainAxisSize: MainAxisSize.min,
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     SizedBox(
-              //       height: 24,
-              //       width: 24,
-              //       child: SvgPicture.asset(
-              //         "assets/images/img_nav_profile.svg",
-              //       ),
-              //     ),
-              //     const Padding(
-              //       padding: EdgeInsets.only(top: 8),
-              //       child: Text(
-              //         "Profile",
-              //         style: TextStyle(
-              //           color: Color(0XFF49454F),
-              //           fontSize: 12,
-              //           fontFamily: 'Roboto',
-              //           fontWeight: FontWeight.w500,
-              //         ),
-              //       ),
-              //     )
-              //   ],
-              // ),
-              icon: SvgPicture.asset(
-                "assets/images/img_nav_profile.svg",
-              ),
-              label: 'Profile',
-            )
-          ],
+          label: 'HOME'),
+      NavigationDestination(
+        icon: SvgPicture.asset(
+          "assets/images/img_nav_favourite.svg",
         ),
+        label: 'Favourite',
       ),
-    );
+      NavigationDestination(
+        icon: SvgPicture.asset(
+          "assets/images/img_nav_profile.svg",
+        ),
+        label: 'Profile',
+      ),
+    ]);
   }
 }
 
-// ignore: must_be_immutable
 class SliderItemWidget extends StatelessWidget {
-  const SliderItemWidget({Key? key})
-      : super(
-          key: key,
-        );
+  const SliderItemWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

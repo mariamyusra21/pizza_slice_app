@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pizza_slice_app/models/pizza_model.dart';
+import 'package:pizza_slice_app/screens/confirm_order_screen.dart';
 
 class PizzaDetailScreen extends StatefulWidget {
   const PizzaDetailScreen({super.key, required this.pizza});
@@ -16,146 +17,137 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0XFFFBF4F4),
-        body: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 328,
-              height: 288,
-              child: Image.asset(widget.pizza.image),
-            ),
-            Text(
-              widget.pizza.name.toString(),
-              textAlign: TextAlign.left,
-              style: const TextStyle(
-                color: Color(0xFF3C2F2F),
-                fontSize: 20,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w600,
-                height: 0.07,
+        appBar: AppBar(
+          backgroundColor: const Color(0XFFFBF4F4),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            // mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: media.width,
+                height: 288,
+                child: Image.asset(widget.pizza.image),
               ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
-              child: Row(
-                children: [
-                  SizedBox(
-                    height: 15,
-                    width: 25,
-                    child: SvgPicture.asset(
-                      "assets/images/img_star.svg",
-                    ),
-                  ),
-                  Text(
-                    widget.pizza.rating.toString(),
-                    style: const TextStyle(
-                      color: Color(0xFF7F7F7F),
-                      fontSize: 12,
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w500,
-                      // height: 0.11,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              child: Text(
-                widget.pizza.desc.toString(),
-                // textAlign: TextAlign.justify,
+              Text(
+                widget.pizza.name.toString(),
+                textAlign: TextAlign.start,
                 style: const TextStyle(
-                  color: Color(0xFF6A6A6A),
-                  fontSize: 16,
+                  color: Color(0xFF3C2F2F),
+                  fontSize: 20,
                   fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w400,
-                  // height: 0.11,
+                  fontWeight: FontWeight.w600,
+                  // height: 0.07,
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50),
-              child: Container(
-                width: 328,
-                height: 66,
-                child: Stack(
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
+                child: Row(
                   children: [
-                    spicySliderWidget(),
-                    portionWidget(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Container(
-                        width: 193,
-                        height: 56.53,
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              left: 0,
-                              top: 0,
-                              child: Container(
-                                width: 193,
-                                height: 56.53,
-                                decoration: ShapeDecoration(
-                                  color: Color(0xFFDB1818),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  shadows: [
-                                    BoxShadow(
-                                      color: Color(0x3F000000),
-                                      blurRadius: 30,
-                                      offset: Offset(0, 9),
-                                      spreadRadius: 0,
-                                    )
-                                  ],
-                                ),
-                                child: Text(
-                                  'ORDER NOW',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    height: 0.08,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            // Positioned(
-                            //   left: 31.02,
-                            //   top: 18.79,
-                            //   child: SizedBox(
-                            //     width: 135.27,
-                            //     height: 18.96,
-                            //     child: Text(
-                            //       'ORDER NOW',
-                            //       textAlign: TextAlign.center,
-                            //       style: TextStyle(
-                            //         color: Colors.white,
-                            //         fontSize: 18,
-                            //         fontFamily: 'Inter',
-                            //         fontWeight: FontWeight.w600,
-                            //         height: 0.08,
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
-                          ],
-                        ),
+                    SizedBox(
+                      height: 15,
+                      width: 25,
+                      child: SvgPicture.asset(
+                        "assets/images/img_star.svg",
                       ),
-                    )
+                    ),
+                    Text(
+                      widget.pizza.rating.toString(),
+                      style: const TextStyle(
+                        color: Color(0xFF7F7F7F),
+                        fontSize: 12,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w500,
+                        // height: 0.11,
+                      ),
+                    ),
                   ],
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  widget.pizza.desc.toString(),
+                  // textAlign: TextAlign.justify,
+                  style: const TextStyle(
+                    color: Color(0xFF6A6A6A),
+                    fontSize: 16,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w400,
+                    // height: 0.11,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 50),
+                child: SizedBox(
+                  width: 328,
+                  height: 66,
+                  child: Stack(
+                    children: [
+                      spicySliderWidget(),
+                      portionWidget(),
+                    ],
+                  ),
+                ),
+              ),
+              // SizedBox(height: 5),
+              Padding(
+                padding: const EdgeInsets.all(5),
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      widget.pizza.spiciness = _currentSliderValue;
+                      widget.pizza.portion = _currentPortion;
+                    });
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ConfirmOrderScreen(
+                                  pizza: widget.pizza,
+                                )));
+                    // TODO: Add screen navigation and add pizza object to it...
+                  },
+                  child: Container(
+                    width: 193,
+                    height: 56.53,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFFDB1818),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x3F000000),
+                          blurRadius: 30,
+                          offset: Offset(0, 9),
+                          spreadRadius: 0,
+                        )
+                      ],
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'ORDER NOW',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w600,
+                          // height: 0.08,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -203,8 +195,8 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
                         width: 10.04,
                         height: 20.08,
                         child: Text(
-                          _currentPortion.toString(),
-                          style: TextStyle(
+                          widget.pizza.portion.toString(),
+                          style: const TextStyle(
                             color: Color(0xFF3C2F2F),
                             fontSize: 18,
                             fontFamily: 'Inter',
@@ -239,7 +231,7 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   Icons.remove,
                                   color: Colors.white,
                                 ),
@@ -272,7 +264,7 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   Icons.add,
                                   color: Colors.white,
                                 ),

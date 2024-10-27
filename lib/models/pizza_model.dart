@@ -21,6 +21,8 @@ class Pizza {
       required this.fav});
 }
 
+
+
 List<Pizza> pizzaList = [
   Pizza(
       name: 'Sicilian Margherita Tomato pizza',
