@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "416600155355",
-    "project_id": "pizza-slice-91524",
-    "storage_bucket": "pizza-slice-91524.appspot.com"
+    "project_number": "23255675344",
+    "project_id": "liquid-agility-439616-f8",
+    "storage_bucket": "liquid-agility-439616-f8.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:416600155355:android:9e0acb16ed72a193d958fe",
+        "mobilesdk_app_id": "1:23255675344:android:cb713f90fe8e9b9a9509d5",
         "android_client_info": {
           "package_name": "com.example.pizza_slice_app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAMAhoqm2O-mNwKBF6EYBRb4ipO6Amcitc"
+          "current_key": "AIzaSyDTUTaOuekpul8hRApwr6qbnqwRK1dmvQY"
         }
       ],
       "services": {

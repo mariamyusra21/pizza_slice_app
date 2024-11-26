@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pizza_slice_app/screens/favourite_screen.dart';
+import 'package:pizza_slice_app/screens/profile_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../widgets/home_screen_items.dart';
@@ -18,6 +20,7 @@ class HomeScreenTabViewState extends State<HomeScreenTabView>
   int sliderIndex = 1;
 
   late TabController tabviewController;
+  int currentPageIndex = 0;
 
   @override
   void initState() {
@@ -30,61 +33,97 @@ class HomeScreenTabViewState extends State<HomeScreenTabView>
     return Scaffold(
       backgroundColor: const Color(0XFFFBF4F4),
       resizeToAvoidBottomInset: true,
-      appBar: _buildAppBar(context),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            _buildSearchSection(context),
-            const SizedBox(height: 12),
-            _buildSliderSection(context),
-            const SizedBox(height: 5),
-            _buildTabview(context),
-            _buildContentPager(context),
-          ],
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   toolbarHeight: 56,
+      //   backgroundColor: Colors.transparent,
+      //   automaticallyImplyLeading: false,
+      //   leadingWidth: 56,
+      //   leading: Padding(
+      //     padding: const EdgeInsets.only(
+      //       left: 12,
+      //       top: 6,
+      //       bottom: 6,
+      //     ),
+      //     child: ClipRRect(
+      //       borderRadius: BorderRadius.circular(
+      //         22,
+      //       ),
+      //       child: Image.asset(
+      //         "assets/images/img_slicce_1.png",
+      //         height: 44,
+      //         width: 44,
+      //       ),
+      //     ),
+      //   ),
+      //   title: const Padding(
+      //     padding: EdgeInsets.only(left: 10),
+      //     child: Text(
+      //       "Craving Satisfaction, One Slice at a Time",
+      //       style: TextStyle(
+      //         color: Color(0XFF6A6A6A),
+      //         fontSize: 12,
+      //         fontFamily: 'Poppins',
+      //         fontWeight: FontWeight.w400,
+      //       ),
+      //     ),
+      //   ),
+      // ),
+      body: <Widget>[
+        SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 12,
+                        top: 6,
+                        bottom: 6,
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                          22,
+                        ),
+                        child: Image.asset(
+                          "assets/images/img_slicce_1.png",
+                          height: 44,
+                          width: 44,
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Craving Satisfaction, One Slice at a Time",
+                        style: TextStyle(
+                          color: Color(0XFF6A6A6A),
+                          fontSize: 12,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                _buildSearchSection(context),
+                const SizedBox(height: 12),
+                _buildSliderSection(context),
+                const SizedBox(height: 5),
+                _buildTabview(context),
+                _buildContentPager(context),
+              ],
+            ),
+          ),
         ),
-      ),
+        // Favourite Screen
+        FavouriteScreen(),
+        // Profile Screen
+        ProfileScreen(),
+      ][currentPageIndex],
       bottomNavigationBar: _buildBottomBar(context),
-    );
-  }
-
-  /// Section Widget
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
-    return AppBar(
-      elevation: 0,
-      toolbarHeight: 56,
-      backgroundColor: Colors.transparent,
-      automaticallyImplyLeading: false,
-      leadingWidth: 56,
-      leading: Padding(
-        padding: const EdgeInsets.only(
-          left: 12,
-          top: 6,
-          bottom: 6,
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(
-            22,
-          ),
-          child: Image.asset(
-            "assets/images/img_slicce_1.png",
-            height: 44,
-            width: 44,
-          ),
-        ),
-      ),
-      title: const Padding(
-        padding: EdgeInsets.only(left: 10),
-        child: Text(
-          "Craving Satisfaction, One Slice at a Time",
-          style: TextStyle(
-            color: Color(0XFF6A6A6A),
-            fontSize: 12,
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-      ),
     );
   }
 
@@ -316,25 +355,39 @@ class HomeScreenTabViewState extends State<HomeScreenTabView>
 
   /// Section Widget
   Widget _buildBottomBar(BuildContext context) {
-    return NavigationBar(height: 80, elevation: 0, destinations: [
-      NavigationDestination(
+    return NavigationBar(
+      height: 60,
+      elevation: 20,
+      backgroundColor: const Color(0XffE2D6D6),
+      selectedIndex: currentPageIndex,
+      indicatorColor: const Color(0xFFDB1818),
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+      destinations: [
+        NavigationDestination(
+            icon: SvgPicture.asset(
+              "assets/images/img_nav_home.svg",
+            ),
+            selectedIcon: Icon(Icons.home_filled),
+            label: 'HOME'),
+        NavigationDestination(
           icon: SvgPicture.asset(
-            "assets/images/img_nav_home.svg",
+            "assets/images/img_nav_favourite.svg",
           ),
-          label: 'HOME'),
-      NavigationDestination(
-        icon: SvgPicture.asset(
-          "assets/images/img_nav_favourite.svg",
+          selectedIcon: Icon(Icons.favorite_rounded),
+          label: 'Favourite',
         ),
-        label: 'Favourite',
-      ),
-      NavigationDestination(
-        icon: SvgPicture.asset(
-          "assets/images/img_nav_profile.svg",
+        NavigationDestination(
+          icon: Icon(Icons.person_2_outlined),
+          selectedIcon: Icon(Icons.person_2_rounded),
+          label: 'Profile',
         ),
-        label: 'Profile',
-      ),
-    ]);
+      ],
+      onDestinationSelected: (int index) {
+        setState(() {
+          currentPageIndex = index;
+        });
+      },
+    );
   }
 }
 

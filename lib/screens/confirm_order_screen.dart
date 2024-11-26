@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pizza_slice_app/models/pizza_model.dart';
+import 'package:pizza_slice_app/screens/delivery_screen.dart';
+import 'package:pizza_slice_app/widgets/action_button.dart';
 
 class ConfirmOrderScreen extends StatefulWidget {
   final Pizza pizza;
@@ -13,6 +15,10 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
   late int? _sizeValue = 0;
   late int? _crustValue = 0;
   late int? _flavourValue = 0;
+  // late int _currentPortion = 1;
+  ValueNotifier<int> _currentPortion = ValueNotifier<int>(1);
+  late int? _basePrice = widget.pizza.price;
+  //  ValueNotifier<int> _basePrice = ValueNotifier<int>();
   List<String> size = ["Small", "Medium", "Large"];
   List<String> crust = ["Hand Tossed", "Pan", "Crunchy Thin", "Italian"];
   List<String> flavour = [
@@ -23,6 +29,17 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
     "Dynamite",
     "Fajita"
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.pizza.flavour = '';
+    widget.pizza.crust = '';
+    widget.pizza.portion = 1;
+    widget.pizza.size = '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,9 +152,9 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -148,30 +165,74 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
                   IconButton(
                       onPressed: () {
                         setState(() {
-                          if (widget.pizza.portion! > 1) {
-                            widget.pizza.portion = widget.pizza.portion! - 1;
+                          if (_currentPortion.value > 1) {
+                            _currentPortion.value--;
+                            widget.pizza.portion = _currentPortion.value;
+                            widget.pizza.price =
+                                (_basePrice! * _currentPortion.value);
                           }
                         });
+                        // _currentPortion.value--;
                       },
                       icon: const Icon(
                         Icons.remove_circle,
                         size: 36,
                       )),
-                  Text(
-                    widget.pizza.portion.toString(),
-                    style: const TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.w600),
+                  ValueListenableBuilder(
+                    valueListenable: _currentPortion,
+                    builder: (context, value, child) {
+                      return Text(
+                        _currentPortion.value.toString(),
+                        style: const TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.w600),
+                      );
+                    },
                   ),
+                  // Text(
+                  //   widget.pizza.portion.toString(),
+                  // style: const TextStyle(
+                  //     fontSize: 22, fontWeight: FontWeight.w600),
+                  // ),
                   IconButton(
                       onPressed: () {
                         setState(() {
-                          widget.pizza.portion = widget.pizza.portion! + 1;
+                          _currentPortion.value++;
+                          widget.pizza.portion = _currentPortion.value;
+                          widget.pizza.price =
+                              (_basePrice! * _currentPortion.value);
                         });
+                        // _currentPortion.value++;
                       },
                       icon: const Icon(
                         Icons.add_circle,
                         size: 36,
                       )),
+                ],
+              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Text(
+                    "Total Price:",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                  ),
+                  //       ValueListenableBuilder(
+                  //   valueListenable: _basePrice*_currentPortion,
+                  //   builder: (context, value, child) {
+                  //     return Text(
+                  //       ${_basePrice * _currentPortion.value}.toString(),
+                  //       style: TextStyle(fontSize: 30),
+                  //     );
+                  //   },
+                  // ),
+                  Text(
+                    "${_basePrice! * _currentPortion.value}",
+                    style: const TextStyle(
+                        fontSize: 22, fontWeight: FontWeight.w600),
+                  ),
                 ],
               ),
               Padding(
@@ -183,40 +244,20 @@ class _ConfirmOrderScreenState extends State<ConfirmOrderScreen> {
                       widget.pizza.size = size.elementAt(_sizeValue!);
                       widget.pizza.flavour = flavour.elementAt(_flavourValue!);
                       widget.pizza.crust = crust.elementAt(_crustValue!);
+                      widget.pizza.portion = _currentPortion.value;
+                      widget.pizza.price = _basePrice! * _currentPortion.value;
                     });
-
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DeliveryScreen(
+                                  pizza: widget.pizza,
+                                )));
                     // TODO: Add screen navigation and add pizza object to it...
                   },
-                  child: Container(
-                    width: double.maxFinite,
-                    height: 56.53,
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFFDB1818),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      shadows: const [
-                        BoxShadow(
-                          color: Color(0x3F000000),
-                          blurRadius: 30,
-                          offset: Offset(0, 9),
-                          spreadRadius: 0,
-                        )
-                      ],
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'CONFIRM ORDER',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                          // height: 0.08,
-                        ),
-                      ),
-                    ),
+                  child: ActionButton(
+                    text: 'CONFIRM ORDER',
+                    isPlain: false,
                   ),
                 ),
               )

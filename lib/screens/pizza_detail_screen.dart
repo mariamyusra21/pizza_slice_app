@@ -13,7 +13,6 @@ class PizzaDetailScreen extends StatefulWidget {
 
 class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
   double _currentSliderValue = 1;
-  int _currentPortion = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -84,14 +83,15 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 50),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
                 child: SizedBox(
                   width: 328,
                   height: 66,
                   child: Stack(
                     children: [
                       spicySliderWidget(),
-                      portionWidget(),
+                      // portionWidget(),
                     ],
                   ),
                 ),
@@ -103,7 +103,7 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
                   onTap: () {
                     setState(() {
                       widget.pizza.spiciness = _currentSliderValue;
-                      widget.pizza.portion = _currentPortion;
+                      // widget.pizza.portion = _currentPortion;
                     });
                     Navigator.push(
                         context,
@@ -153,136 +153,137 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
     );
   }
 
-  Positioned portionWidget() {
-    return Positioned(
-      left: 216.76,
-      top: 0,
-      child: Container(
-        width: 101.24,
-        height: 53.55,
-        child: Stack(
-          children: [
-            const Positioned(
-              left: 0.24,
-              top: 0,
-              child: SizedBox(
-                width: 76,
-                height: 16,
-                child: Text(
-                  'Portion',
-                  style: TextStyle(
-                    color: Color(0xFF3C2F2F),
-                    fontSize: 14,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w500,
-                    height: 0.10,
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              left: -0,
-              top: 20.08,
-              child: Container(
-                width: 101.24,
-                height: 33.47,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      left: 46.02,
-                      top: 15,
-                      child: SizedBox(
-                        width: 10.04,
-                        height: 20.08,
-                        child: Text(
-                          widget.pizza.portion.toString(),
-                          style: const TextStyle(
-                            color: Color(0xFF3C2F2F),
-                            fontSize: 18,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            height: 0.08,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      child: Container(
-                        width: 33.47,
-                        height: 33.47,
-                        child: Stack(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  if (_currentPortion > 1) {
-                                    _currentPortion--;
-                                  }
-                                });
-                              },
-                              child: Container(
-                                width: 33.47,
-                                height: 33.47,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFDB1818),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                child: const Icon(
-                                  Icons.remove,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 67.78,
-                      top: -0,
-                      child: Container(
-                        width: 33.47,
-                        height: 33.47,
-                        child: Stack(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _currentPortion++;
-                                });
-                              },
-                              child: Container(
-                                width: 33.47,
-                                height: 33.47,
-                                decoration: ShapeDecoration(
-                                  color: const Color(0xFFDB1818),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                child: const Icon(
-                                  Icons.add,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // Positioned portionWidget() {
+  //   return Positioned(
+  //     left: 216.76,
+  //     top: 0,
+  //     child: Container(
+  //       width: 101.24,
+  //       height: 53.55,
+  //       child: Stack(
+  //         children: [
+  //           const Positioned(
+  //             left: 0.24,
+  //             top: 0,
+  //             child: SizedBox(
+  //               width: 76,
+  //               height: 16,
+  //               child: Text(
+  //                 'Portion',
+  //                 style: TextStyle(
+  //                   color: Color(0xFF3C2F2F),
+  //                   fontSize: 14,
+  //                   fontFamily: 'Roboto',
+  //                   fontWeight: FontWeight.w500,
+  //                   height: 0.10,
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //           Positioned(
+  //             left: -0,
+  //             top: 20.08,
+  //             child: Container(
+  //               width: 101.24,
+  //               height: 33.47,
+  //               child: Stack(
+  //                 children: [
+  //                   Positioned(
+  //                     left: 46.02,
+  //                     top: 15,
+  //                     child: SizedBox(
+  //                       width: 10.04,
+  //                       height: 20.08,
+  //                       child: Text(
+  //                         widget.pizza.portion.toString(),
+  //                         style: const TextStyle(
+  //                           color: Color(0xFF3C2F2F),
+  //                           fontSize: 18,
+  //                           fontFamily: 'Inter',
+  //                           fontWeight: FontWeight.w500,
+  //                           height: 0.08,
+  //                         ),
+  //                       ),
+  //                     ),
+  //                   ),
+  //                   Positioned(
+  //                     left: 0,
+  //                     top: 0,
+  //                     child: Container(
+  //                       width: 33.47,
+  //                       height: 33.47,
+  //                       child: Stack(
+  //                         children: [
+  //                           InkWell(
+  //                             onTap: () {
+  //                               setState(() {
+  //                                 if (_currentPortion != 0 &&
+  //                                     _currentPortion > 1) {
+  //                                   _currentPortion--;
+  //                                 }
+  //                               });
+  //                             },
+  //                             child: Container(
+  //                               width: 33.47,
+  //                               height: 33.47,
+  //                               decoration: ShapeDecoration(
+  //                                 color: const Color(0xFFDB1818),
+  //                                 shape: RoundedRectangleBorder(
+  //                                   borderRadius: BorderRadius.circular(10),
+  //                                 ),
+  //                               ),
+  //                               child: const Icon(
+  //                                 Icons.remove,
+  //                                 color: Colors.white,
+  //                               ),
+  //                             ),
+  //                           ),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                   ),
+  //                   Positioned(
+  //                     left: 67.78,
+  //                     top: -0,
+  //                     child: Container(
+  //                       width: 33.47,
+  //                       height: 33.47,
+  //                       child: Stack(
+  //                         children: [
+  //                           InkWell(
+  //                             onTap: () {
+  //                               setState(() {
+  //                                 _currentPortion++;
+  //                               });
+  //                             },
+  //                             child: Container(
+  //                               width: 33.47,
+  //                               height: 33.47,
+  //                               decoration: ShapeDecoration(
+  //                                 color: const Color(0xFFDB1818),
+  //                                 shape: RoundedRectangleBorder(
+  //                                   borderRadius: BorderRadius.circular(10),
+  //                                 ),
+  //                               ),
+  //                               child: const Icon(
+  //                                 Icons.add,
+  //                                 color: Colors.white,
+  //                               ),
+  //                             ),
+  //                           ),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Positioned spicySliderWidget() {
     return Positioned(
